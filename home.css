@@ -1,0 +1,42 @@
+/* Custom CSS */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f7f3e9; /* Light cream background */
+    color: #333;
+}
+
+.hero-section {
+    background-image: url('Background.png'); /* Placeholder for a cafe background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+}
+
+.logo-font {
+    font-family: 'Pacifico', cursive; /* Example for a unique logo font */
+}
+
+/* Custom scroll behavior for smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+}
+
+.animate-fade-in-delay {
+    animation: fade-in 1s ease-out 0.5s forwards; /* Added delay */
+}
