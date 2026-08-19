@@ -3,30 +3,37 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Balaji Shake Wala | Menu</title>
+  <title>Shake Bust | Menu</title>
   <style>
-    :root { --wine:#8f1d32; --pink:#fff4f5; --ink:#2b171b; --gold:#f7bd39; }
+    :root { --wine:#123c45; --pink:#edf7f4; --ink:#102a31; --gold:#f2a03d; }
     * { box-sizing:border-box; }
-    body { margin:0; color:var(--ink); font-family:Arial, Helvetica, sans-serif; background:linear-gradient(155deg,#fff8f1,#fce5ec); }
-    header { background:var(--wine); color:#fff; padding:18px max(24px, calc((100% - 1120px)/2)); display:flex; gap:20px; align-items:center; justify-content:space-between; box-shadow:0 2px 12px #5d102344; }
-    .brand { font-size:clamp(1.25rem,3vw,1.8rem); font-weight:800; letter-spacing:.4px; }
+    body { min-height:100vh; margin:0; overflow-x:hidden; color:var(--ink); font-family:Arial, Helvetica, sans-serif; background:radial-gradient(circle at 12% 15%,#fee4b4 0 9%,transparent 30%),radial-gradient(circle at 88% 18%,#bfe4d8 0 8%,transparent 27%),linear-gradient(145deg,#f8fcf7,#dbeee8); }
+    body::before, body::after { content:""; position:fixed; z-index:-1; width:260px; aspect-ratio:1; border-radius:50%; filter:blur(8px); opacity:.4; animation:drift 10s ease-in-out infinite alternate; }
+    body::before { top:18%; left:-120px; background:#f2a03d; } body::after { right:-100px; bottom:4%; background:#3aa889; animation-delay:-5s; }
+    header { position:relative; isolation:isolate; background:linear-gradient(110deg,#0b3039,#17616a 55%,#3aa889); color:#fff; padding:18px max(24px, calc((100% - 1120px)/2)); display:flex; gap:20px; align-items:center; justify-content:space-between; box-shadow:0 15px 30px #0b303944; }
+    header::after { content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(115deg,transparent 30%,#ffffff33 50%,transparent 70%); transform:translateX(-120%); animation:shine 5s infinite; }
+    .brand { display:flex; align-items:center; gap:10px; font-size:clamp(1.25rem,3vw,1.8rem); font-weight:900; letter-spacing:.4px; text-shadow:0 3px 0 #082630, 0 8px 12px #041b2166; transform:translateZ(20px); }.brand img{width:38px;height:38px;filter:drop-shadow(0 3px #082630)}
     nav { display:flex; gap:20px; flex-wrap:wrap; }
     nav a { color:#fff; text-decoration:none; font-weight:700; }
-    main { max-width:1120px; margin:0 auto; padding:48px 24px 64px; }
-    .intro { text-align:center; max-width:700px; margin:0 auto 36px; }
-    h1 { font-size:clamp(2rem,5vw,3.5rem); margin:0 0 10px; color:var(--wine); }
+    main { max-width:1120px; margin:0 auto; padding:54px 24px 64px; perspective:1200px; }
+    .intro { text-align:center; max-width:700px; margin:0 auto 42px; animation:intro-in .8s both; }
+    h1 { font-size:clamp(2rem,5vw,3.5rem); margin:0 0 10px; color:var(--wine); text-shadow:0 3px 0 #fff, 0 8px 18px #8f1d3233; }
     .intro p { margin:0; line-height:1.55; color:#694a50; }
-    .note { display:inline-block; margin-top:15px; padding:8px 12px; border-radius:999px; color:#742037; background:#fff; font-size:.9rem; font-weight:700; box-shadow:0 2px 8px #8f1d3218; }
-    .menu-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
-    .category { overflow:hidden; border-radius:18px; background:#fff; box-shadow:0 10px 30px #6e253022; }
-    .category h2 { margin:0; padding:17px 20px; color:#fff; background:var(--wine); font-size:1.35rem; }
-    .item { display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:12px; padding:14px 18px; border-bottom:1px solid #f5e2e6; }
+    .note { display:inline-block; margin-top:15px; padding:9px 14px; border-radius:999px; color:#742037; background:#fff; font-size:.9rem; font-weight:700; box-shadow:0 7px 0 #e8c3cc, 0 14px 20px #8f1d3218; transform:translateY(-4px); }
+    .menu-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:25px; }
+    .category { overflow:hidden; border:1px solid #fff9; border-radius:22px; background:linear-gradient(145deg,#fff,#f0faf6); box-shadow:0 16px 0 #17616a26, 0 30px 38px #0b303933; transform-style:preserve-3d; transition:transform .35s ease,box-shadow .35s ease; animation:float 5s ease-in-out infinite; }
+    .category:nth-child(2) { animation-delay:-1.7s; } .category:nth-child(3) { animation-delay:-3.3s; }
+    .category:hover { animation:none; transform:translateY(-14px) rotateX(4deg) rotateY(-4deg); box-shadow:0 28px 0 #17616a22,0 44px 55px #0b303944; }
+    .category h2 { margin:0; padding:18px 20px; color:#fff; background:linear-gradient(115deg,#123c45,#21756f); font-size:1.35rem; text-shadow:0 2px 1px #082a31; transform:translateZ(18px); }
+    .item { display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:12px; padding:14px 18px; border-bottom:1px solid #f5e2e6; transition:background .2s ease, transform .2s ease; }
+    .item:hover { background:#edf9f4; transform:translateX(5px); }
     .item:last-child { border-bottom:0; }
     .item-name { font-weight:700; line-height:1.25; }
     .price { min-width:54px; text-align:right; color:var(--wine); font-weight:800; font-size:.95rem; }
-    .add { border:0; cursor:pointer; color:#fff; background:var(--wine); border-radius:999px; padding:8px 10px; font-size:.78rem; font-weight:800; }
-    .add:hover { background:#6d1027; }
-    .cart { position:sticky; bottom:16px; margin:34px auto 0; max-width:680px; border:1px solid #efc9d2; border-radius:16px; padding:16px; background:#fffdfd; box-shadow:0 10px 30px #6e253030; }
+    .add { border:0; cursor:pointer; color:#fff; background:linear-gradient(#eaa03d,#bd6b1b); border-radius:999px; padding:8px 10px; font-size:.78rem; font-weight:800; box-shadow:0 4px 0 #87460e,0 7px 10px #9e5e1933; transform:translateY(-2px); transition:transform .16s ease,box-shadow .16s ease; }
+    .add:hover { background:linear-gradient(#f5b553,#c97420); transform:translateY(-4px) scale(1.04); box-shadow:0 6px 0 #87460e,0 10px 13px #9e5e1933; }
+    .add:active { transform:translateY(2px); box-shadow:0 1px 0 #87460e; }
+    .cart { position:sticky; bottom:16px; margin:42px auto 0; max-width:680px; border:1px solid #fff; border-radius:20px; padding:18px; background:linear-gradient(140deg,#fff,#edf9f4); box-shadow:0 12px 0 #17616a20,0 24px 36px #0b303933; transform:translateZ(30px); }
     .cart-top { display:flex; justify-content:space-between; gap:16px; align-items:center; }
     .cart h2 { color:var(--wine); font-size:1.2rem; margin:0; }
     #cart-items { margin:12px 0 0; padding:0; list-style:none; color:#63434a; line-height:1.65; }
@@ -34,20 +41,25 @@
     .checkout { display:none; border:0; border-radius:10px; background:#25D366; color:#073b18; padding:11px 14px; cursor:pointer; font-weight:800; }
     .checkout.show { display:block; }
     footer { padding:22px; text-align:center; color:#76525a; font-size:.9rem; }
+    @keyframes float { 0%,100% { transform:translateY(0) rotateX(0); } 50% { transform:translateY(-9px) rotateX(1deg); } }
+    @keyframes drift { to { transform:translate(55px,-35px) scale(1.15); } }
+    @keyframes shine { 0%,55% { transform:translateX(-120%); } 75%,100% { transform:translateX(120%); } }
+    @keyframes intro-in { from { opacity:0; transform:translateY(22px) rotateX(-8deg); } to { opacity:1; transform:none; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
     @media (max-width:850px) { .menu-grid { grid-template-columns:1fr; } }
     @media (max-width:520px) { header { flex-direction:column; align-items:flex-start; } nav { gap:13px; } .item { grid-template-columns:1fr auto; } .add { grid-column:1/-1; } }
   </style>
 </head>
 <body>
   <header>
-    <div class="brand">Balaji Shake Wala</div>
+    <a class="brand" href="index.html"><img src="logo.svg" alt="Shake Bust logo">Shake Bust</a>
     <nav><a href="index.html">Home</a><a href="Menu.html">Menu</a><a href="about.html">About Us</a><a href="contact.html">Contact</a></nav>
   </header>
   <main>
     <section class="intro">
       <h1>Our Shake Menu</h1>
       <p>Fresh fruit shakes, chocolate favourites and delicious mixes. Choose medium or large and add your favourites to the order.</p>
-      <span class="note">Prices taken from the published Balaji Shake Wala menu</span>
+      <span class="note">Prices based on our current Shake Bust menu</span>
     </section>
     <section class="menu-grid" id="menu"></section>
     <aside class="cart" aria-live="polite">
@@ -55,7 +67,7 @@
       <ul id="cart-items"><li class="empty">Add a shake to start your order.</li></ul>
     </aside>
   </main>
-  <footer>Balaji Shake Wala Â· Sonipat</footer>
+  <footer>Shake Bust · Sonipat</footer>
   <script>
     const menu = [
       { name: 'Fruit Shakes', items: [
@@ -66,25 +78,27 @@
       ]},
       { name: 'Mix Shakes', items: [
         ['Papaya Chiku Mix',90,120], ['Papaya Banana Mix',90,120], ['Papaya Date Mix',100,140], ['Banana Chiku Mix',90,120], ['Banana Date Mix',100,140], ['Banana Chiku Date Mix',100,140], ['Mango Banana Mix',100,140], ['Chiku Date Mix Shake',100,140], ['Papaya Banana Chiku Shake',90,120]
+      ]},
+      { name: 'Snacks', items: [
+        ['Classic French Fries',80], ['Peri Peri Fries',100], ['Cheese Garlic Bread',120], ['Veg Grilled Sandwich',110], ['Veg Cheese Burger',120], ['Veg Momos',100], ['Cheese Corn Nuggets',110], ['Loaded Nachos',120]
       ]}
     ];
     const cart = [];
-    const money = n => `â‚¹${n}`;
-    document.querySelector('#menu').innerHTML = menu.map(category => `<article class="category"><h2>${category.name}</h2>${category.items.map(([name,medium,large]) => `<div class="item"><span class="item-name">${name}</span><span class="price">M ${money(medium)}</span><button class="add" data-name="${name}" data-price="${medium}" data-size="Medium">Add</button><span></span><span class="price">L ${money(large)}</span><button class="add" data-name="${name}" data-price="${large}" data-size="Large">Add</button></div>`).join('')}</article>`).join('');
+    const money = n => `${n}`;
+    document.querySelector('#menu').innerHTML = menu.map(category => `<article class="category"><h2>${category.name}</h2>${category.items.map(item => { const [name,medium,large] = item; return large ? `<div class="item"><span class="item-name">${name}</span><span class="price">M ${money(medium)}</span><button class="add" data-name="${name}" data-price="${medium}" data-size="Medium">Add</button><span></span><span class="price">L ${money(large)}</span><button class="add" data-name="${name}" data-price="${large}" data-size="Large">Add</button></div>` : `<div class="item snack-item"><span class="item-name">${name}</span><span class="price">${money(medium)}</span><button class="add" data-name="${name}" data-price="${medium}" data-size="Snack">Add</button></div>`; }).join('')}</article>`).join('');
     function renderCart() {
       const list = document.querySelector('#cart-items'), total = cart.reduce((sum,item) => sum + item.price, 0);
-      list.innerHTML = cart.length ? cart.map((item,i) => `<li>${item.name} (${item.size}) â€” ${money(item.price)} <button class="add" aria-label="Remove ${item.name}" onclick="removeItem(${i})">Remove</button></li>`).join('') : '<li class="empty">Add a shake to start your order.</li>';
-      document.querySelector('#total').textContent = cart.length ? `Â· ${money(total)}` : '';
+      list.innerHTML = cart.length ? cart.map((item,i) => `<li>${item.name} (${item.size}) — ${money(item.price)} <button class="add" aria-label="Remove ${item.name}" onclick="removeItem(${i})">Remove</button></li>`).join('') : '<li class="empty">Add a shake to start your order.</li>';
+      document.querySelector('#total').textContent = cart.length ? `· ${money(total)}` : '';
       document.querySelector('#checkout').classList.toggle('show', !!cart.length);
     }
     window.removeItem = i => { cart.splice(i,1); renderCart(); };
     document.addEventListener('click', event => { const button = event.target.closest('.add[data-name]'); if (!button) return; cart.push({name:button.dataset.name,price:+button.dataset.price,size:button.dataset.size}); renderCart(); });
     document.querySelector('#checkout').addEventListener('click', () => {
-      const lines = cart.map(item => `â€¢ ${item.name} (${item.size}) â€” ${money(item.price)}`).join('\n');
+      const lines = cart.map(item => `• ${item.name} (${item.size}) — ${money(item.price)}`).join('\n');
       const total = cart.reduce((sum,item) => sum + item.price, 0);
-      window.open(`https://wa.me/919996977710?text=${encodeURIComponent(`Hello Balaji Shake Wala!\n\nOrder:\n${lines}\n\nTotal: ${money(total)}`)}`, '_blank');
+      window.open(`https://wa.me/919996977710?text=${encodeURIComponent(`Hello Shake Bust!\n\nOrder:\n${lines}\n\nTotal: ${money(total)}`)}`, '_blank');
     });
   </script>
 </body>
 </html>
-
